@@ -22,7 +22,7 @@ const port = 3000
 
 app.use(cors())
 
-app.use(express.static(path.join(__dirname + 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(bodyParser.json())
 
@@ -35,6 +35,10 @@ app.use('/users', users)
 
 app.get('/', (req, res) => {
   res.send('Invalid Endpoint')
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
 app.listen(port, () => {
